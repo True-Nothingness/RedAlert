@@ -90,7 +90,10 @@ public class EventEditActivity extends AppCompatActivity {
 
     public void addEvent(String name, LocalDate date, LocalTime time) {
         Event event = new Event(name, date, time);
-        eventDAO.addEvent(event);
+        long id = eventDAO.addEvent(event);
+        if (id != -1) {
+            AlarmHelper.setAlarm(this, event);
+        }
     }
 
     public void saveEventAction(View view) {

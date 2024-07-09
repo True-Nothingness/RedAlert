@@ -40,7 +40,7 @@ public class EventAdapter extends ArrayAdapter<Event>
         deleteEventBtn.setOnClickListener(v -> {
             // Perform delete operation
             eventDAO.deleteEvent(event.getId());
-
+            AlarmHelper.cancelAlarm(getContext(), event.getId());
             // Remove event from adapter and update ListView
             remove(event);
             notifyDataSetChanged();

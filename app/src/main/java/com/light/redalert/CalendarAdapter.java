@@ -47,17 +47,16 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
             holder.dayOfMonth.setText("");
         else {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
-            // Check if the date has events and change background color
-            for (Event event : events) {
-                if (event.getDate().equals(date)) {
-                    holder.parentView.setBackgroundColor(Color.parseColor("#008080"));
-                    holder.parentView.findViewById(R.id.cellDayText).setBackgroundColor(Color.parseColor("#008080"));
-                    break; // Exit loop once background is set
-                }
-            }
             if (date.equals(CalendarUtils.selectedDate)) {
                 holder.parentView.setBackgroundColor(Color.parseColor("#D3D3D3"));
                 holder.parentView.findViewById(R.id.cellDayText).setBackgroundColor(Color.parseColor("#D3D3D3"));
+            }
+        }
+        // Check if the date has events and change background color
+        for (Event event : events) {
+            if (event.getDate().equals(date)) {
+                holder.parentView.findViewById(R.id.cellDayText).setBackgroundResource(R.drawable.circle_background);
+                break; // Exit loop once background is set
             }
         }
     }
